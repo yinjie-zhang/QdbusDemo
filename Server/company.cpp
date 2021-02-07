@@ -38,7 +38,6 @@ double company::candidateExpectSalary(double salary){
     return salary;
 }
 
-
 int company::getUsrAge(){
     return usr_age;
 }

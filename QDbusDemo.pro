@@ -7,5 +7,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
+    AccessServerTest \
     Client \
     Server

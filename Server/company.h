@@ -7,7 +7,7 @@
 class company : public QObject
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "company.interface")
+    Q_CLASSINFO("D-Bus Interface", "company.interface")  //申明 D-Bus Interface,编写相关method和signal
 public:
     explicit company();
     int getUsrAge();

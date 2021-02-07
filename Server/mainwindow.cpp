@@ -14,15 +14,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&m_company,SIGNAL(salaryChangedSingal()),this,SLOT(salaryChangeSlot()));
     connect(this->ui->resultLine,SIGNAL(editingFinished()),this,SLOT(recuritChangeSlot()));
 
-    //new connection
+    //创建连接
     QDBusConnection connection = QDBusConnection::sessionBus();
-    //registe service
+    //注册服务 注："company.recruitment"就是 service name
     if(!connection.registerService("company.recruitment")){
         qDebug()<<connection.lastError().message();
         exit(1);
     }
-
-    //registe object
+    //注册对象 注："/company/path"就是 Object Paths
+    //Message Bus 会根据service name判断是哪个应用，根据Object Paths判断是哪个对象
     connection.registerObject("/company/path",&m_company,
                                    QDBusConnection::ExportAllContents);
 
@@ -52,5 +52,5 @@ void MainWindow::professionChangedSlot(){
 }
 void MainWindow::recuritChangeSlot(){
     qDebug()<<"recurit changed slot";
-    emit m_company.recruitInfo(m_company.getUsrName(),this->ui->resultLine->text());
+    emit m_company.recruitInfo(m_company.getUsrName(),this->ui->resultLine->text()); //
 }
